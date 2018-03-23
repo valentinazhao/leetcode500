@@ -4,7 +4,6 @@
 class Solution {
     public List<Integer> largestDivisibleSubset(int[] nums) {
         int n = nums.length;
-        List<Integer> result = new ArrayList<>();
         
         Arrays.sort(nums);
         int maxV = 0, index = -1;
@@ -13,15 +12,13 @@ class Solution {
         for (int i = 0; i < n; i++) {
             max[i] = 1;
             prev[i] = -1;
-            int j = i - 1;
-            while (j >= 0) {
+            for (int j = i - 1; j >= 0; j--) {
                 if (nums[i] % nums[j] == 0) {
                     if (max[j] + 1 > max[i]) {
                         max[i] = max[j] + 1;
                         prev[i] = j;
                     }
                 }
-                --j;
             }
             if (max[i] > maxV) {
                 maxV = max[i];
@@ -36,6 +33,7 @@ class Solution {
         }
         
         return res;
+        
     }
 }
 ```
