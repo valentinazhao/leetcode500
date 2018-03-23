@@ -26,14 +26,13 @@ class Solution {
             }
         }
         
-        List<Integer> res = new ArrayList<>();
+        List<Integer> result = new ArrayList<>();
         while (index != -1) {
-            res.add(nums[index]);
+            result.add(nums[index]);
             index = prev[index];
         }
         
-        return res;
-        
+        return result;        
     }
 }
 ```
