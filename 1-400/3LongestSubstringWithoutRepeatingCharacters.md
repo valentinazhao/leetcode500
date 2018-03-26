@@ -12,7 +12,7 @@ Note that the answer must be a substring, "pwke" is a subsequence and not a subs
 对每一个字符，只要碰到重复出现的字符就更新left，因为不能包含重复字符。每次记录下字符最后一次出现的位置。
 m[ch] < left针对待定子字符串如果已经不包含再次出现的“重复”字符，要把当前字符囊括进去。举例，当输入字符串为"abbca"的时候，当i=4时，也就是即将要开始遍历最后一个字母a时，此时哈希表表中a对应1，b对应3，c对应4，left为2，即当前最长的子字符串的左边界为第二个b的位置，而第一个a已经不在当前最长的字符串的范围内了，那么对于i=4这个新进来的a，应该要加入结果中，而此时未被更新的哈希表中a为1，不是0，如果不判断它和left的关系的话，就无法更新结果，那么答案就会少一位，所以需要加m[s[i]]<left.
 ```
-
+Solution 1: use int[] instead of hashtable
 ```java
 class Solution {
     public int lengthOfLongestSubstring(String s) {
@@ -27,6 +27,27 @@ class Solution {
                 left = m[ch];
             }
             m[ch] = i + 1;
+        }
+        
+        return res;
+    }
+}
+```
+
+Solution 2: HashSet
+```java
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int left = 0, right = 0, res = 0;
+        Set<Character> t = new HashSet<Character>();
+        
+        while (right < s.length()) {
+            if (!t.contains(s.charAt(right))) {
+                t.add(s.charAt(right++));
+                res = Math.max(res, t.size());
+            } else {
+                t.remove(s.charAt(left++));
+            }
         }
         
         return res;
