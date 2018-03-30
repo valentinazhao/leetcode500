@@ -3,32 +3,42 @@
 ```java
 class Solution {
     public List<Integer> findSubstring(String s, String[] words) {
-        final Map<String, Integer> counts = new HashMap<>();
-        for (final String word : words) {
-            counts.put(word, counts.getOrDefault(word, 0) + 1);
+        List<Integer> result = new ArrayList<>();
+        if (s == null || words == null || s.length() == 0 || words.length == 0) {
+            return result;
         }
-        final List<Integer> indexes = new ArrayList<>();
-        final int n = s.length(), num = words.length, len = words[0].length();
-        for (int i = 0; i < n - num * len + 1; i++) {
-            final Map<String, Integer> seen = new HashMap<>();
+        
+        Map<String, Integer> dict = new HashMap<>();
+        for (int i = 0; i < words.length; i++) {
+            if (!dict.containsKey(words[i])) {
+                dict.put(words[i], 1);
+            } else {
+                dict.put(words[i], dict.get(words[i]) + 1);
+            }
+        }
+        
+        int m = words[0].length(), n = words.length;
+        for (int i = 0; i + m * n <= s.length(); i++) {
+            Map<String, Integer> map = new HashMap<>();
             int j = 0;
-            while (j < num) {
-                final String word = s.substring(i + j * len, i + (j + 1) * len);
-                if (counts.containsKey(word)) {
-                    seen.put(word, seen.getOrDefault(word, 0) + 1);
-                    if (seen.get(word) > counts.getOrDefault(word, 0)) {
+            while (j < n) {
+                String key = s.substring(i + j * m, i + (j + 1) * m);
+                if (dict.containsKey(key)) {
+                    map.put(key, map.getOrDefault(key, 0) + 1);
+                    if (map.get(key) > dict.getOrDefault(key, 0)) {
                         break;
                     }
                 } else {
                     break;
                 }
-                j++;
+                j ++;
             }
-            if (j == num) {
-                indexes.add(i);
+            if (j == n) {
+                result.add(i);
             }
         }
-        return indexes;
+        
+        return result;
     }
 }
 ```
