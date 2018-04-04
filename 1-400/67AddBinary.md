@@ -28,7 +28,7 @@ class Solution {
                 sum +=bc[bi--] - '0';
             }
             
-            result[max--] = (char)(sum % 2 + 48);
+            result[max--] = (char)(sum % 2 + '0');
             sum /= 2;
         }
         
