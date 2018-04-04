@@ -42,3 +42,39 @@ public class Solution {
     }
 }
 ```
+
+```java
+class Solution {
+    public String simplifyPath(String path) {
+        if (path == null || path.length() == 0) {
+            return null;
+        }
+        String[] pathArray = path.split("/");
+        Stack<String> stack = new Stack<>();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < pathArray.length; i++) {
+            String str = pathArray[i];
+            if (str.length() == 0 || str.equals(".")) {
+                continue;
+            }
+            if (str.equals("..")) {
+                if(!stack.isEmpty()) {
+                    stack.pop();
+                }
+            } else {
+                stack.push(pathArray[i]);
+            }
+        }
+        if(stack.isEmpty()) {
+            return "/";
+        } else {
+            List<String> resultList = new ArrayList<>(stack);
+            for (String str : resultList) {
+                sb.append("/");
+                sb.append(str);
+            }
+        }
+        return sb.toString();
+    }
+}
+```
