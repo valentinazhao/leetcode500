@@ -22,24 +22,22 @@ public class Solution {
         if (numRows == 0) {
             return rst;
         }
-
-        ArrayList<Integer> first = new ArrayList<Integer>();
-        first.add(0, 1);
+        
+        List<Integer> first = new ArrayList<>();
+        first.add(1);
         rst.add(first);
-
-        for (int i = 1; i < numRows; i++) {
-            ArrayList<Integer> tmp = new ArrayList<Integer>(i + 1);
-            for (int j = 0; j < i + 1; j++){
-                tmp.add(0);
-            } 
-            List<Integer> prev = rst.get(i - 1);
-            tmp.set(0, prev.get(0));
-            tmp.set(i, prev.get(i - 1));
-            for (int j = 1; j < i; j++){
-                tmp.set(j, prev.get(j - 1)+prev.get(j));
+        for (int i = 2; i <= numRows; i++) {
+            List<Integer> tempList = new ArrayList<>(i);
+            tempList.add(0, 1);
+            tempList.add(tempList.size() - 1, 1);
+            List<Integer> prev = rst.get(i - 2);
+            for (int k = 1; k <= i - 2; k++) {
+                tempList.add(k, prev.get(k - 1) + prev.get(k));
             }
-            rst.add(tmp);
+            rst.add(new ArrayList<>(tempList));
         }
+        
+        
         return rst;
     }
 }
