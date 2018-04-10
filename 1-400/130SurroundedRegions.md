@@ -17,7 +17,9 @@ X X X X
 X X X X
 X O X X
 ```
-
+`
+I felt that the problem statement was difficult to understand as it and the associated example don’t clearly indicate what surrounded means. An ‘O’ is surrounded if there is NO path from it to the boundary of the matrix (ie. row index 0, column index 0, row index matrix.length-1, column index matrix[0].length-1) when moving in a North, South, East, or West direction :). Hope this helps anyone else who was unclear.
+`
 
 ```java
 class Solution {
