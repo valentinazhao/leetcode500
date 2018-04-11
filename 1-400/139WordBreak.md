@@ -1,6 +1,6 @@
 [拆分词句](https://leetcode.com/problems/word-break/description/)
 
-````
+```
 Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words. You may assume the dictionary does not contain duplicate words.
 
 For example, given
@@ -31,7 +31,7 @@ public class Solution {
         return checked[n];
     }
 }
-````
+```
 
 DFS
 ```java
@@ -63,3 +63,4 @@ public class Solution {
         return false;
     }
 }
+```
