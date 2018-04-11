@@ -10,6 +10,12 @@ Return the starting gas station's index if you can travel around the circuit onc
 Note:
 The solution is guaranteed to be unique.
 ```
+`
+注意到这样一个现象：
+1. 如果从位置i开始，i+1, i+2, i+3...一路开过来邮箱都没有空，说明什么？说明从i到i+1, i+2, i+3...肯定是正积累.
+2. 现在突然发现开到位置j的时候邮箱空了，说明从i开始到j没法儿走完全程.那么，我们要从i+1开始尝试吗？不需要！为什么？因为从前面知道，位置i是正积累，
+   从i+1开始走更加没办法走完i->j了,因为缺少i的正积累.同理也不需要从i+2, i+3...开始尝试.
+`
 
 
 ```java
