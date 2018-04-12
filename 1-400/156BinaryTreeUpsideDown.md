@@ -13,7 +13,6 @@ Given a binary tree {1,2,3,4,5},
  / \
 4   5
  
-
 return the root of the binary tree [4,5,2,#,#,3,1].
 
    4
@@ -71,25 +70,22 @@ class Solution {
 }
 ```
 
-高级写法
+高级水平
 ```java
 class Solution {
-   
     public TreeNode upsideDownBinaryTree(TreeNode root) {
-        if(root == null || root.left == null || (root.left == null && root.right == null)) {
-            return root;
-        }
+	TreeNode node = root, parent = null, left = null, right = null;
+	
+	while (node != null) {
+            left = node.left;
+            node.left = right;
+	    right = node.right;
+            node.right = parent;
+	    parent = node;
+	    node = left;
+	}
         
-        TreeNode left = root.left; 
-        TreeNode right = root.right;
-	    TreeNode newRoot = upsideDownBinaryTree(root.left);
-	    left.left = root.right;
-	    left.right = root;
-	    root.left = null;
-        root.right = null;
-        
-	    return newRoot;
-
-    }  
+	return parent;
+    } 
 }
 ````
