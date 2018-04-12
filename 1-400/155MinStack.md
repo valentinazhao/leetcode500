@@ -24,9 +24,9 @@ minStack.getMin();   --> Returns -2.
 public class MinStack {
 
     Stack<Integer> stackData ;
-    Stack<Integer> stackMin ;
-    
-    /** initialize your data structure here. */
+    Stack<Integer> stackMin ;  // 存放到目前为止，minimum element. 所以不存在stackData弹出一个数能比stackMin栈顶元素还小.
+    
+    /** initialize your data structure here. */
     public MinStack() {
         stackData = new Stack<Integer>();
         stackMin = new Stack<Integer>();
