@@ -1,4 +1,4 @@
-[用read4() API读取N个字符](https://leetcode.com/problems/read-n-characters-given-read4/description/)
+[用read4() API读取N个字符-单次调用](https://leetcode.com/problems/read-n-characters-given-read4/description/)
 
 ```
 The API: int read4(char *buf) reads 4 characters at a time from a file.
