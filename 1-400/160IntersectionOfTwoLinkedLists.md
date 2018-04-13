@@ -24,6 +24,9 @@ Your code should preferably run in O(n) time and use only O(1) memory.
 
 ```
 
+
+
+两链表结尾一定相同，长的链表先多走长的一节肯定没关系.
 ```java
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
@@ -58,3 +61,4 @@ public class Solution {
         return curA;
     }
 }
+```
