@@ -7,6 +7,13 @@ Given a sorted integer array where the range of elements are in the inclusive ra
 For example, given [0, 1, 3, 50, 75], lower = 0 and upper = 99, return ["2", "4->49", "51->74", "76->99"].
 ```
 
+```
+此题坑较多：比如 low 和 up 相同，数组为空的 case；low 和 up 是 int 类型的最小和最大值的情况，此时用 num[i] - num[i-1] 就会有溢出
+[-2147483648,-2147483648,0,2147483647,2147483647]
+-2147483648
+2147483647
+```
+
 
 ```java
 class Solution {
