@@ -28,6 +28,7 @@ public class Solution {
             } else {
                 right--;
             }
+        }
          
         return null;
     }
