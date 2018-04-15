@@ -21,8 +21,8 @@ Related problem: Reverse Words in a String II
 ```java
 public class Solution {
     public void rotate(int[] nums, int k) {
-        k %= nums.length;
-        reverse(nums, 0, nums.length - 1);
+        k %= nums.length;  // 注意k可能比数组长度大
+        reverse(nums, 0, nums.length - 1);
         reverse(nums, 0, k - 1);
         reverse(nums, k, nums.length - 1);
     }
