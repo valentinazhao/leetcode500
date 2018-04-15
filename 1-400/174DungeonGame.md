@@ -29,7 +29,7 @@ The knight's health has no upper bound.
 Any room can contain threats or power-ups, even the first room the knight enters and the bottom-right room where the princess is imprisoned.
 ```
 
-这是个in-place做法
+这是个in-place做法， But also you can use rolling array for O(n) Space.
 ```java
 class Solution {
     public int calculateMinimumHP(int[][] dungeon) {
