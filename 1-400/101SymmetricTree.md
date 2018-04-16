@@ -34,7 +34,33 @@ class Solution {
         } else if (left == null || right == null) {
             return false;
         }
-        return left.val == right.val && helper(left.right, right.left) && helper(left.left, right.right);
+        if (left.val != right.val) {
+            return false;
+        }
+        return helper(left.right, right.left) && helper(left.left, right.right);
     }
+}
+```
+
+Iterative
+```java
+public boolean isSymmetric(TreeNode root) {
+    if (root == null) return true;
+   
+    Stack<TreeNode> stack = new Stack<TreeNode>();
+    stack.push(root.left);
+    stack.push(root.right);
+    while (!stack.isEmpty()) {
+        TreeNode node1 = stack.pop();
+        TreeNode node2 = stack.pop();
+        if (node1 == null && node2 == null) continue;
+        if (node1 == null || node2 == null) return false;
+        if (node1.val != node2.val) return false;
+        stack.push(node1.left);
+        stack.push(node2.right);
+        stack.push(node1.right);
+        stack.push(node2.left);
+    }
+    return true;
 }
 ```
