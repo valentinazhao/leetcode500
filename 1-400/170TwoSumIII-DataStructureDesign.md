@@ -15,7 +15,7 @@ find(7) -> false
 
 
 ```
-这题easy难度，我就用arraylist + sort一次bug完了。
+这题easy难度，我就用arraylist + sort一次bug free完了。
 
 But, 这个帖子说的很好 https://leetcode.com/problems/two-sum-iii-data-structure-design/discuss/52005/Trade-off-in-this-problem-should-be-considered 
 
