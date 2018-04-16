@@ -9,7 +9,7 @@ Note:
 You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).
 ```
 
-Example: [7,9,6,1,3,2,4,7]
+Example: [7,9,6,1,3,2,4,7]  </br>
          [2,1,3,4,5,4,2,8,7]
 ```java
 class Solution {
