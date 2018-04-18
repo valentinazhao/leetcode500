@@ -64,3 +64,28 @@ public boolean isSymmetric(TreeNode root) {
     return true;
 }
 ```
+
+```java
+网上一大票用stack的，有post说stack更concise，但我没发觉。
+个人更喜欢queue，逻辑更清晰，traverse level by level, and from side(left & right) to center
+class Solution {   
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null || (root.left == null && root.right == null)) return true; // 保证
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root.left);
+        q.offer(root.right);
+        while (!q.isEmpty()) {
+            TreeNode node1 = q.poll();
+            TreeNode node2 = q.poll();
+            if (node1 == null && node2 == null) continue;
+            if (node1 == null || node2 == null) return false;
+            if (node1.val != node2.val) return false;
+            q.offer(node1.left);
+            q.offer(node2.right);
+            q.offer(node1.right);
+            q.offer(node2.left);
+        }
+        return true;
+    }
+}
+```
