@@ -69,3 +69,40 @@ class Solution {
     }
 }
 ```
+
+Solution 2: Return Type
+```java
+class Solution {
+    class Cell {
+        int height;
+        boolean flag;
+        public Cell(int h, boolean flag) {
+            this.height = h;
+            this.flag = flag;
+        }       
+    }
+    public boolean isBalanced(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        Cell result = helper(root);
+        return result.flag;
+    }
+    private Cell helper(TreeNode root) {
+        if (root == null) {
+            return new Cell(0, true);
+        }
+        
+        Cell left = helper(root.left);
+        Cell right = helper(root.right);
+        
+        Cell result = new Cell(Math.max(left.height, right.height) + 1, true);
+        
+        if (Math.abs(left.height - right.height) > 1 || !left.flag || !right.flag) {
+            result.flag = false;       
+        }
+        
+        return result;
+    }
+}
+```
