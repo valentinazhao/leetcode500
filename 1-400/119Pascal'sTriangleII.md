@@ -11,17 +11,24 @@ Could you optimize your algorithm to use only O(k) extra space?
 ```
 
 ```java
+倒着来的原因画图即可知（为了不覆盖要重复利用的数）
 public class Solution {
     public List<Integer> getRow(int rowIndex) {
         List<Integer> result = new ArrayList<>();
-        for (int i = 0; i <= rowIndex; i++) {
-            for (int j = i - 1; j > 0; j-- ) {       
-                result.set(j, res.get(j) + res.get(j - 1));                                       
-            }                                                                                    
-            result.add(1);    
+        result.add(1);
+        if (rowIndex == 0) {
+            return result;
         }
-
-        return result;   
+        
+        for (int i = 1; i <= rowIndex; i++) {
+            result.add(1);
+            int size = result.size();
+            for (int j = size - 2; j >= 1; j--) {
+                result.set(j, result.get(j) + result.get(j - 1));
+            }
+        }
+        
+        return result;
     }
 }
 ```
