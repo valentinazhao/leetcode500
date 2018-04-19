@@ -49,3 +49,33 @@ class Solution {
     }
 }
 ```
+
+```java
+这个remove是真不能少，return 之前必须remove. 我靠，我写太长了.
+class Solution {
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> tmpList = new ArrayList<>();
+        if(root == null) {
+            return res;
+        }
+        helper(root, 0, sum, tmpList, res);
+        return res;
+    }
+    private void helper(TreeNode root, int sum, int target, List<Integer> list, List<List<Integer>> result) {
+        if (root == null) {
+            return ;
+        }
+        if ((sum + root.val) == target && root.left == null && root.right == null) {
+            list.add(root.val);
+            result.add(new ArrayList<>(list));
+            list.remove(list.size() - 1);
+            return ;
+        }
+        list.add(root.val);
+        helper(root.left, sum + root.val, target, list, result);
+        helper(root.right, sum + root.val, target, list, result);
+        list.remove(list.size() - 1);
+    }
+}
+```
