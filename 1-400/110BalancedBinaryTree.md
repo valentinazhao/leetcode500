@@ -57,7 +57,7 @@ For the current node root, calling depth() for its left and right children actua
 
 
 
-Solution 2: Return Type - Time Complexity O(n)
+Solution 2: Return Type - Bottom-up Time Complexity O(n)
 ```java
 class Solution {
     class Cell {
