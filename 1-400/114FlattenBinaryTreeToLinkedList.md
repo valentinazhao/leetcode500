@@ -24,7 +24,7 @@ The flattened tree should look like:
             \
              6
 ```
-
+注意题目何为"in-place"？ 不然的话可以用中序遍历tree，另起炉灶build linkedlist
 ```java
 public class Solution {
     public void flatten(TreeNode root) {
