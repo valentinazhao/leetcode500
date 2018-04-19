@@ -32,45 +32,32 @@ Given the following tree [1,2,2,3,3,null,null,4,4]:
 Return false.
 ```
 
-Solution 1: without resultType
+Solution 1: Top-down 
 ```java
+The first method checks whether the tree is balanced strictly according to the definition of balanced binary tree: the difference between the heights of the two sub trees are not bigger than 1, and both the left sub tree and right sub tree are also balanced. With the helper function depth(), we could easily write the code;
+
 class Solution {
-    public boolean isBalanced(TreeNode root){
+    public boolean isBalanced(TreeNode root) {
         if (root == null) {
             return true;
         }
         int left = getDepth(root.left);
-        if (left == -1) {
-            return false;
-        }
         int right = getDepth(root.right);
-        if (right == -1) {
-            return false;
-        }
-        
-        return (left - right) < 2 && (left - right) > -2;
+        return Math.abs(left - right) <= 1 && isBalanced(root.left) && isBalanced(root.right);
     }
-
-    public int getDepth(TreeNode node) {
+    private int getDepth(TreeNode node) {
         if (node == null) {
-            return 0;
-        }
-        int left = getDepth(node.left);
-        if (left == -1) {
             return -1;
         }
-        int right = getDepth(node.right);
-        if (right == -1) {
-            return -1;
-        }
-        if ((left - right) >= 2 || (right - left) >= 2) return -1;
-        
-        return Math.max(left, right) + 1;
+        return Math.max(getDepth(node.left), getDepth(node.right)) + 1;
     }
 }
+For the current node root, calling depth() for its left and right children actually has to access all of its children, thus the complexity is O(N). We do this for each node in the tree, so the overall complexity of isBalanced will be O(N^2). 
 ```
 
-Solution 2: Return Type
+
+
+Solution 2: Return Type - Time Complexity O(n)
 ```java
 class Solution {
     class Cell {
