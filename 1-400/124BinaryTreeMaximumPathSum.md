@@ -31,8 +31,8 @@ class Solution {
         }
         int left = Math.max(0, helper(root.left));
         int right = Math.max(0, helper(root.right));
-        max = Math.max(max, left + right + root.val);
-        return Math.max(left, right) + root.val;
+        max = Math.max(max, left + right + root.val); // 左右保证了一定做正功
+        return Math.max(left, right) + root.val;
     }   
 }
 ````
