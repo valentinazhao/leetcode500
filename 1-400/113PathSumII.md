@@ -31,11 +31,13 @@ class Solution {
         return res;
     }
     public void helper(TreeNode root, int sum, List<Integer> tmpList, List<List<Integer>> res) {
-        tmpList.add(root.val);
-        if(root.left == null && root.right == null) {
+        tmpList.add(root.val); // 此处不需要 if (root == null) return ; 后面语句已经保证了root有效
+        if(root.left == null && root.right == null) {
             if(sum == root.val) {
-                res.add(new ArrayList(tmpList)); // 此处写return 的话有个bug，说明此写法有问题
-            }
+                res.add(new ArrayList(tmpList)); 
+                tmpList.remove(tmpList.size() - 1);
+                return ;
+            }
         }
         
         if(root.left != null) {
@@ -44,7 +46,6 @@ class Solution {
         if(root.right != null) {
             helper(root.right, sum - root.val, tmpList, res);
         }
-        
         tmpList.remove(tmpList.size() - 1);
     }
 }
