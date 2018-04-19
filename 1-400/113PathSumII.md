@@ -34,8 +34,8 @@ class Solution {
         tmpList.add(root.val);
         if(root.left == null && root.right == null) {
             if(sum == root.val) {
-                res.add(new ArrayList(tmpList));
-            }
+                res.add(new ArrayList(tmpList)); // 此处写return 的话有个bug，说明此写法有问题
+            }
         }
         
         if(root.left != null) {
