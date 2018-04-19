@@ -57,7 +57,7 @@ For the current node root, calling depth() for its left and right children actua
 
 
 
-Solution 2: Return Type - Bottom-up Time Complexity O(n)
+Solution 2: Bottom-up Time Complexity O(n)
 ```java
 class Solution {
     class Cell {
@@ -90,6 +90,30 @@ class Solution {
         }
         
         return result;
+    }
+}
+```
+without return type but you have confused variables. return value represents both boolean and height, it's confusing so it's not recommneded in industry. just use in this case.
+```java
+class Solution {
+    public boolean isBalanced(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        int left = helper(root.left);
+        int right = helper(root.right);
+        return left != -1 && right != -1 && Math.abs(left - right) <= 1;
+    }
+    private int helper(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        int left = helper(node.left);
+        int right = helper(node.right);
+        if (left == -1 || right == -1 || Math.abs(left - right) > 1) {
+            return -1;
+        }
+        return Math.max(left, right) + 1;
     }
 }
 ```
