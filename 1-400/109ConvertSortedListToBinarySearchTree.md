@@ -19,6 +19,23 @@ One possible answer is: [0,-3,9,-10,null,5], which represents the following heig
  -10  5
 ```
 
+
+```
+这题的Time & Space complexity就有意思了..
+
+
+然后...
+我又发现了这不是最优解.. 
+看了discuss版里1337大神说要自底向上构建，这样就不用每次找中点了。方法是in-order traversal + DFS自底向上，很巧妙。 以后假如自顶向下不好实现的话不妨试一试自底向上。不过in general一般还是用自顶向下。下面是实现:
+Time Complexity - O(n)，Space Complexity - O(n) {}
+
+这种写法
+Time: O(nlogn)
+Space: O(n)
+
+
+```
+
 ```java
 public class Solution {
     public TreeNode sortedListToBST(ListNode head) {
