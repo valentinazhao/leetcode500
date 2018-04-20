@@ -1,5 +1,8 @@
 [对称树](https://leetcode.com/problems/symmetric-tree/description/)
 
+Time: O(n)
+Space: O(1) - if we ignore the recursion stack which is the height of the tree.
+
 ```
 Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
 
