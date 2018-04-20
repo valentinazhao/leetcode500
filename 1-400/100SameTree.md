@@ -1,5 +1,7 @@
 [判断相同树](https://leetcode.com/problems/same-tree/description/)
 
+Time: O(n) (Only when the trees are unequal, the comparisons will be less than n.)
+Space: O(height)
 ```
 Given two binary trees, write a function to check if they are the same or not.
 
@@ -76,4 +78,9 @@ class Solution {
 	     return stack_p.size() == stack_q.size() ;	 
     }
 }
+```
+
+```java
+续...
+网上看到BFS/DFS及Morris Traversal的方法
 ```
