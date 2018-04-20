@@ -19,24 +19,24 @@ Return the following binary tree:
    15   7
 ```
 
-```java
-public class Solution {   
+```java   
+public class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         if(preorder == null|| inorder == null|| preorder.length != inorder.length) return null;
-        TreeNode head = rebuildHelper(preorder, 0, inorder, 0, inorder.length - 1);
+        TreeNode head = rebuildHelper(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
         return head;
     }
     
-    public TreeNode rebuildHelper(int[] pre, int prestart, int[] in, int instart, int inend) {
-        if(instart > inend || prestart > pre.length - 1) return null;
-        //else if( prestart == preend) return new TreeNode(pre[prestart]);
+    public TreeNode rebuildHelper(int[] pre, int prestart, int preend, int[] in, int instart, int inend) {
+        if(instart > inend || prestart > preend) return null;
+        else if( prestart == preend) return new TreeNode(pre[prestart]);
         int data = pre[prestart];
         int index = findIndex(in, instart, inend, data);
         if(index == -1) return null;
         TreeNode root = new TreeNode(data);
         int len = index - instart;
-        root.left = rebuildHelper(pre, prestart + 1, in, instart, index - 1);
-        root.right = rebuildHelper(pre, prestart + 1 + len, in, index + 1, inend);
+        root.left = rebuildHelper(pre, prestart + 1, prestart + len, in, instart, index - 1);
+        root.right = rebuildHelper(pre, prestart + 1 + len, preend, in, index + 1, inend);
         return root;
     }
     
@@ -47,6 +47,7 @@ public class Solution {
             }
         }
         return -1;
-    }   
-}
+    }
+    
+} 
 ```
