@@ -1,5 +1,8 @@
 [将有序数组转换成二叉搜索树](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/description/)
 
+
+
+
 ```
 Given an array where elements are sorted in ascending order, convert it to a height balanced BST.
 
@@ -17,6 +20,19 @@ One possible answer is: [0,-3,9,-10,null,5], which represents the following heig
    -3   9
    /   /
  -10  5
+```
+
+```
+Discussion里有个贴，非常有意思和价值：
+What if it's the sorted linkedlist, can we construct the BST from that in O(n)?
+https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/discuss/35255/What-if-it's-the-sorted-linkedlist-can-we-construct-the-BST-from-that-in-O(n)
+
+
+以下是O(n)的方法，但其实也有O(nlogn)的方法，用bs每次找到要insert的target值.
+
+
+我还有一个疑问，是不是因为这里要BST，因此“int mid = start + (end - start) / 2；”一切为二，如果是三/四...叉树是不是就要想办法分成相应的段数，构建tree.
+
 ```
 
 ```java
