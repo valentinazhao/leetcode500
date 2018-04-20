@@ -18,24 +18,26 @@ Return the following binary tree:
     /  \
    15   7
 ```
-
+Time: O(n)
+Space： O（height)  (in this case, it's a binary tree, so it's logN)
+both of them same as post-order traversal
 ```java
 class Solution {
     public TreeNode buildTree(int[] inorder, int[] postorder) {
         if(postorder == null|| inorder == null|| postorder.length != inorder.length) return null;
-        TreeNode head = rebuildHelper(postorder, postorder.length - 1, inorder, 0, inorder.length - 1);
+        TreeNode head = rebuildHelper(postorder, 0, postorder.length - 1, inorder, 0, inorder.length - 1);
         return head;
     }
-    public TreeNode rebuildHelper(int[] post, int postend, int[] in, int instart, int inend) {
-        if(instart > inend || 0 > postend) return null;
-        //else if( poststart == postend) return new TreeNode(post[poststart]);
+    public TreeNode rebuildHelper(int[] post, int poststart, int postend, int[] in, int instart, int inend) {
+        if(instart > inend || poststart > postend) return null;
+        else if( poststart == postend) return new TreeNode(post[poststart]);
         int data = post[postend];
         int index = findIndex(in, instart, inend, data);
         if(index == -1) return null;
         TreeNode root = new TreeNode(data);
         int len = inend - index;
-        root.left = rebuildHelper(post, postend - len - 1, in, instart, index - 1);
-        root.right = rebuildHelper(post, postend - 1, in, index + 1, inend);
+        root.left = rebuildHelper(post, poststart, postend - len - 1, in, instart, index - 1);
+        root.right = rebuildHelper(post, postend - len, postend - 1, in, index + 1, inend);
         return root;
     }
     
@@ -48,4 +50,9 @@ class Solution {
         return -1;
     }
 }
+```
+
+```java
+续..
+还有用iterative方法写的，碉堡了..
 ```
