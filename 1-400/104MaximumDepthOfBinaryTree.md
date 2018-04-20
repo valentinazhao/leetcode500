@@ -1,5 +1,7 @@
 [二叉树最大深度](https://leetcode.com/problems/maximum-depth-of-binary-tree/description/)
 
+Time: O(n)
+Space: O(n/2), worst case: complete binary tree(保留疑问...)
 ```
 Given a binary tree, find its maximum depth.
 
