@@ -25,6 +25,8 @@ You may assume k is always valid, 1 ≤ k ≤ n2.
 这题参考bittiger视频，有三种解法
 
 其中，bs不能写成传统if(count==k)return mid;这样非常可能不存在，比如题目中例子14和13都是k=8，但14是不存在数组的。
+证明为什么mid是数组中存在的数，以下
+https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/discuss/85182/My-solution-using-Binary-Search-in-C++
 
 ```
 
