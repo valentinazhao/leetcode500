@@ -60,3 +60,47 @@ public class TwoSum {
 	    return false;
 	 }
 }
+
+
+```java
+看完了bittiger以后更新了code ..
+
+class TwoSum {
+    // <number, frequency>
+    private final Map<Integer, Integer> map;
+    // Maintain a list to iterate for find() to avoid iterate the map, which could be slow
+    private final List<Integer> list;
+    
+    /** Initialize your data structure here. */
+    public TwoSum() {
+        map = new HashMap<Integer, Integer>();
+        list = new ArrayList<Integer>();
+    }
+    
+    /** Add the number to an internal data structure.. */
+    public void add(int number) {
+        list.add(number);
+        Integer frequency = map.get(number);
+        if (frequency == null) {
+            map.put(number, 1);
+        } else {
+            map.put(number, frequency + 1);
+        }           
+    }
+    
+    /** Find if there exists any pair of numbers which sum is equal to the value. */
+    public boolean find(int value) {
+        for (int num: list) {
+            int target = value - num;
+            Integer count = map.get(target);
+            if (count != null) {
+                if (target != num || (target == num && count >= 2)) {
+                    return true;
+                }
+            }
+            
+        }
+        return false;
+    }
+}
+```
