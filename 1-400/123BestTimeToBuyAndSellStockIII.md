@@ -82,7 +82,7 @@ public int maxProfit(int[] prices) {
      }
      
      int trans = 2, n = prices.length;
-     int[][] dp = new int[trans][n + 1];
+     int[][] dp = new int[trans + 1][n + 1];
      
      for (int i = 1; i <= trans; i++) {
           int min = Integer.MAX_VALUE;
