@@ -10,14 +10,30 @@ You may not engage in multiple transactions at the same time (ie, you must sell 
 ```
 
 ```
-Example: [7,9,6,1,3,2,4,7] [2,1,3,4,5,4,2,8,7]
+Say you have an array for which the ith element is the price of a given stock on day i.
 
-Comparing to I and II, III limits the number of transactions to 2. This can be solve by "devide and conquer". We use left[i] to track the maximum profit for transactions before i, and use right[i] to track the maximum profit for transactions after i. You can use the following example to understand the Java solution:
+Design an algorithm to find the maximum profit. You may complete at most two transactions.
 
-Prices: 1 4 5 7 6 3 2 9
-left = [0, 3, 4, 6, 6, 6, 6, 8]
-right= [8, 7, 7, 7, 7, 7, 7, 0]
-The maximum profit = 13
+Note: You may not engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again).
+
+Example 1:
+
+Input: [3,3,5,0,0,3,1,4]
+Output: 6
+Explanation: Buy on day 4 (price = 0) and sell on day 6 (price = 3), profit = 3-0 = 3.
+             Then buy on day 7 (price = 1) and sell on day 8 (price = 4), profit = 4-1 = 3.
+Example 2:
+
+Input: [1,2,3,4,5]
+Output: 4
+Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4.
+             Note that you cannot buy on day 1, buy on day 2 and sell them later, as you are
+             engaging multiple transactions at the same time. You must sell before buying again.
+Example 3:
+
+Input: [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transaction is done, i.e. max profit = 0.
 ```
 
 
@@ -60,20 +76,22 @@ class Solution {
 Idea is simple : Keep track of the minimum value till previous day and 
 check how much maximum profit can be obtained for current day.
 
-
 public int maxProfit(int[] prices) {
-        if(prices.length == 0)
-            return 0;
-		int trans = 2;
-		int dp[][] = new int[trans + 1][prices.length];
-		
-		for(int i = 1; i <= trans; i++) {
-			int min = Integer.MAX_VALUE;
-			for(int j = 1; j < prices.length; j++) {
-				min = Math.min(min, prices[j - 1] - dp[i - 1][j - 1]);
-				dp[i][j] = Math.max(dp[i][j - 1], prices[j] - min);
-			}
-		}
-		return dp[trans][prices.length - 1];
-	}
+     if (prices == null || prices.length == 0) {
+          return 0;
+     }
+     
+     int trans = 2, n = prices.length;
+     int[][] dp = new int[trans][n + 1];
+     
+     for (int i = 1; i <= trans; i++) {
+          int min = Integer.MAX_VALUE;
+	  for (int j = 1; j < n; j++) {
+	  	min = Math.min(min, prices[j - 1] - dp[i - 1][j - 1]);
+		dp[i][j] = Math.max(dp[i][j - 1], prices[j] - min);
+	  }
+     }
+     
+     return dp[trans][n - 1];
+}
 ```
