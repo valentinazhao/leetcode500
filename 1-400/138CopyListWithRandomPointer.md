@@ -36,7 +36,7 @@ public class Solution {
 
 
 ```java
-Time: Access eache node TWICE - O(2n)
+Time: Access each node TWICE - O(2n)
 Space: HashMap - O(n)
 public class Solution {
     public RandomListNode copyRandomList(RandomListNode head) {
@@ -117,7 +117,7 @@ public class Solution {
         while (cur != null) {
             RandomListNode node = cur.next.next;
             if (node != null) cur.next.next = node.next;
-            cur.next = node; //这题
+            cur.next = node; // 这题竟然要把原list恢复原貌！！
             cur = node;
         }
         
