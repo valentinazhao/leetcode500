@@ -22,28 +22,21 @@ public class Solution extends Reader4 {
      * @param n   Maximum number of characters to read
      * @return    The number of characters read
      */
-    char[] buffer = new char[4];
-    int bufferPtr = 0, bufferCnt = 0;
     
     public int read(char[] buf, int n) {
-        int cnt = 0;
+        char[] temp = new char[4];
+        int index = 0;
         
-        while (cnt < n) {
-            if (bufferPtr == bufferCnt) {
-                bufferCnt = read4(buffer);
-                bufferPtr = 0;
+        while (true) {
+            int count = read4(temp);
+            count = Math.min(count, n - index);
+            for (int i = 0; i < count; i++) {
+                buf[index++] = temp[i];
             }
-            
-            if (bufferCnt == 0) {
-                break;
+            if (index == n || count < 4) {
+                return index;
             }
-            
-            while (cnt < n && bufferPtr < bufferCnt) {
-                buf[cnt++] = buffer[bufferPtr++];
-            }          
         }
-        
-        return cnt;
     }
 }
 ```
