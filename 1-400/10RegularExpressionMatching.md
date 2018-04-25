@@ -48,6 +48,29 @@ Output: false
 ```
 nice solution: https://leetcode.com/problems/regular-expression-matching/discuss/5651/Easy-DP-Java-Solution-with-detailed-Explanation
 
+```
+来吧！！这题要什么别人的解释，我已经理解了..
+
+dp[i][j] 代表s中从左到右i位和p中j位是否match，举例，dp[0][4]代表到P中的第四位即"*"这一位是否和s中的零个吻合。
+看初始化语句，如果“*”号前面的是吻合的，那么当前位当然也吻合，即为将正确值传递下去。也正因为如此，返回的是dp[len][len]
+
+那么，是否可以只要不吻合就return呢？否！比如 s: “aa”, p : "aa*", dp[0][1], dp[0][2]当然是无法和0个a匹配上的。但是, dp[1][1]是true，因为
+从s中一个a和从p中一个a能匹配上。由此，直接返回肯定要出错。
+
+More examples,
+s: "aa"
+p: "a*"
+        /*
+        for (int i = 0; i < p.length(); i++) {
+            if (p.charAt(i) == '*' && dp[0][i-1]) {
+                dp[0][i+1] = true;
+            }
+        } */
+这段
+
+```
+
+
 ```java
 class Solution {
     public boolean isMatch(String s, String p) {
