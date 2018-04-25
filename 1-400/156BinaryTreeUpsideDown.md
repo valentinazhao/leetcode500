@@ -89,3 +89,30 @@ class Solution {
     } 
 }
 ````
+
+
+
+```java
+class Solution {
+    public TreeNode upsideDownBinaryTree(TreeNode root) {
+        if (root == null || root.left == null) {
+            return root;
+        }
+        // assume all lower levels are handled
+        TreeNode neNode = upsideDownBinaryTree(root.left);
+    
+        // handled current level
+        root.left.left = root.right;
+        root.left.right = root;
+        
+        root.left = null;
+        root.right = null;
+        
+        return neNode;
+    }
+}
+```
+
+
+```java
+iterative 方法
