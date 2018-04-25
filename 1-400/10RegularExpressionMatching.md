@@ -92,8 +92,8 @@ class Solution {
         
         for (int i = 0 ; i < s.length(); i++) {
             for (int j = 0; j < p.length(); j++) {
-                // 这两
-                if (p.charAt(j) == '.' || p.charAt(j) == s.charAt(i)) {
+                // 这两其实
+                if (p.charAt(j) == '.' || p.charAt(j) == s.charAt(i)) {
                     dp[i+1][j+1] = dp[i][j];
                 }
                 if (p.charAt(j) == '*') {
