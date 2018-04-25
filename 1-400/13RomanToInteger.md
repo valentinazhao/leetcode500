@@ -14,7 +14,7 @@ class Solution {
 	map.put('D', 500);
 	map.put('M', 1000);
         
-        // String: XCIV Decimal: 94 = 100-10-1+5
+        // String: XCIV Decimal: 94 = -10+100-1+5
     	int number = 0, prev = -1;
 	for (int i = s.length() - 1; i >= 0; i--) {
 		char ch = s.charAt(i);
