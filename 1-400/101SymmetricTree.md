@@ -71,9 +71,12 @@ public boolean isSymmetric(TreeNode root) {
 ```java
 网上一大票用stack的，有post说stack更concise，但我没发觉。
 个人更喜欢queue，逻辑更清晰，traverse level by level, and from side(left & right) to center
+
+补充: 一个q逻辑不严密！因为我发现现在的queue竟然能insert null pointer！惊不惊喜，意不意外！所以if .. continue不能写break;
+
 class Solution {   
     public boolean isSymmetric(TreeNode root) {
-        if (root == null || (root.left == null && root.right == null)) return true; // 保证
+        if (root == null || (root.left == null && root.right == null)) return true; 
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(root.left);
         q.offer(root.right);
