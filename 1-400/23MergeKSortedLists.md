@@ -39,33 +39,77 @@ public class Solution {
 
 Solution 2
 ```java
-public class Solution {
-    public ListNode mergeKLists(ListNode[] lists) {
-        int n = lists.length;
-        if (lists == null || n == 0) return null;
-        
-        while (n > 1){
-            int k = (n + 1) / 2;
-            for (int i = 0; i < n/2; i++) {
-                lists[i] = mergeTwoLists(lists[i], lists[i + k]);
-            }
-            n = k;
+/**have a priorityqueue pq, put all the first node in the lists to the pq
+ * poll the node with smallest val from pq, add the node to the tail, and add the node.next to the pq
+ * ListNode is not comparable, so we need to creat a comparator and pass to the pq
+ * space complexity O(len) len is length of the lists
+ * time complexity O(nlog(len)) n is total number of nodes, and log(len) is cost for update the pq each time when adding a new node
+ */
+class Solution {
+    private class NodeOrder implements Comparator<ListNode> {
+        @Override
+        public int compare(ListNode l1, ListNode l2) {
+            return l1.val - l2.val;
         }
-    
-        return lists[0];   
+    }
+    public Comparator<ListNode> valOrder() {
+        return new NodeOrder();
     }
     
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2){        
-        if (l1 == null) return l2;
-        if (l2 == null) return l1;
+    public ListNode mergeKLists(ListNode[] lists) {
+        if (lists == null || lists.length == 0) return null;
+        int n = lists.length;
+        PriorityQueue<ListNode> pq = new PriorityQueue<ListNode>(n, valOrder());
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
         
-        if (l1.val < l2.val){
-            l1.next = mergeTwoLists(l1.next, l2);
-            return l1;
-        }else{
-            l2.next = mergeTwoLists(l2.next, l1);
-            return l2;
-        }       
+        for (ListNode node : lists) {
+            if (node != null) pq.add(node);
+        }
+        while (!pq.isEmpty()) {
+            ListNode node = pq.poll();
+            if(node.next != null) pq.add(node.next);
+            tail.next = node;
+            tail = tail.next;
+        }
+        return dummy.next;
+    }
+}
+
+/** idea based on two list merge, divide the lists into two parts, merge them seperately, and then do two lists merge
+ *  similar to mergeSort
+ *  time complexity (O(nlog(len)) n is the total number of nodes, len is the length of the lists.
+ */
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        if (lists == null || lists.length == 0) return null;
+        return mergeLists(lists, 0, lists.length - 1);
+    }
+    private ListNode mergeLists(ListNode[] lists, int lo, int hi) {
+        if (lo > hi) return null;
+        if (lo == hi) return lists[lo];
+        int mid = (hi-lo)/2 + lo;
+        ListNode left = mergeLists(lists, lo, mid);
+        ListNode right = mergeLists(lists, mid + 1, hi);
+        return mergeTwoLists(left, right);
+    }
+    private ListNode mergeTwoLists(ListNode left, ListNode right) {
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+        while(left != null && right != null) {
+            if (left.val <= right.val) {
+                tail.next = left;
+                left = left.next;
+            }
+            else {
+                tail.next = right;
+                right = right.next;
+            }
+            tail = tail.next;
+        }
+        if (left == null) tail.next = right;
+        if (right == null) tail.next = left;
+        return dummy.next;
     }
 }
 ```
