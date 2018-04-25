@@ -16,7 +16,7 @@ Output: ""
 Explanation: There is no common prefix among the input strings.
 ```
 
-
+Time: O(m*n) Space: constant
 ```java
 public class Solution {
     public String longestCommonPrefix(String[] strs) {
