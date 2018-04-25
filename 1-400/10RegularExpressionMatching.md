@@ -66,7 +66,11 @@ p: "a*"
                 dp[0][i+1] = true;
             }
         } */
-这段
+这段是给初始化，意思是  s: ""
+                     p: "a*" -> True
+                     的确，*代表一个或者多个之前的字母，这个“*”号可以吃掉所有之前的字母！
+                  
+哈哈哈
 
 ```
 
@@ -85,12 +89,11 @@ class Solution {
                 dp[0][i+1] = true;
             }
         }
+        
         for (int i = 0 ; i < s.length(); i++) {
             for (int j = 0; j < p.length(); j++) {
-                if (p.charAt(j) == '.') {
-                    dp[i+1][j+1] = dp[i][j];
-                }
-                if (p.charAt(j) == s.charAt(i)) {
+                // 这两
+                if (p.charAt(j) == '.' || p.charAt(j) == s.charAt(i)) {
                     dp[i+1][j+1] = dp[i][j];
                 }
                 if (p.charAt(j) == '*') {
