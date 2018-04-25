@@ -13,7 +13,13 @@ Return
   ["a","a","b"]
 ]
 ```
+```
 在哪里切 + 切几刀?
+Time: O(2^n)
+Space: O(n*2^n)
+
+```
+
 ```java
 class Solution {
     public List<List<String>> partition(String s) {
