@@ -67,6 +67,13 @@ public class Solution extends Reader4 {
      * @param n   Maximum number of characters to read
      * @return    The number of characters read
      */
+     
+      abcd efgh ijk 11
+      n = 2 count = 4 buf[ab] pointer = 2  temp[abcd]
+      n = 3 index = 2 buf[cd] pointer = 0 
+            temp[efgh] count = 4 buf[cde] pointer = 1
+
+     
     private int count = 0;
     private int pointer = 0;
     private char[] temp = new char[4];
