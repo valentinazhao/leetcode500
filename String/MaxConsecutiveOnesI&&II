@@ -54,11 +54,66 @@ coming from the stream as it's too large to hold in memory. Could you solve it e
 思路：
 维护一个window，在这个window里面，有最多k个'0'. 最大长度就是window的右边界减去左边界.
 从左到右扫描，如果碰到'0'，则加一. 这时候window里面可能出现了超过k个的'0',所以需要移动左边界. 
-用
+用while循环可以将左指针移动到合适的位置(即恰好跳过这个多余的'0'). 
+
+完成.
 
 
 ```
 
 ```java
+class Solution {
+    public int findMaxConsecutiveOnes(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        
+        int l = 0, k = 1, rst = 0, cnt = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                cnt ++;
+            }
+            while (cnt > k) {
+                if (nums[l++] == 0) {
+                    cnt --;
+                }
+            }
+            rst = Math.max(rst, i - l + 1);
+        }
+        
+        return rst;
+    }
+}
+```
 
+```
+Follow-up:
+这种方法不合适steam，因为nums[l]要访问之前的数字. 怎么办?
+可以用一个queue，将所有遇到0的位置保存下来. 这样我们就能知道l要移动到哪里了.
+
+```
+
+```java
+class Solution {
+    public int findMaxConsecutiveOnes(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        
+        Queue<Integer> q = new LinkedList<>();
+        int rst = 0, k = 1, l = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                q.offer(i);
+            }
+            if (q.size() > k) {
+                l = q.peek() + 1;
+                q.poll();
+            }
+            rst = Math.max(rst, i - l + 1);
+        }
+        
+        return rst;
+    }
+}
 ```
