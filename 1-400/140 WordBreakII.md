@@ -78,4 +78,42 @@ public class Solution {
         return validMap.get(0);
     }
 }
-````
+```
+
+backtracking标准格式你记住了吗
+```java
+class Solution {
+    public List<String> wordBreak(String s, List<String> wordDict) {
+        Set<String> dict = new HashSet();
+        
+        for(String str : wordDict)  dict.add(str);
+        
+        return backTrack(s, dict, new HashMap());
+        
+    }
+    public List<String> backTrack(String s, Set<String>dict, Map<String, List<String>> memo){
+        List<String> res = new ArrayList();
+        if (memo.containsKey(s)) return memo.get(s);
+        
+        for(int i = 0; i < s.length();i++){
+            String temp = s.substring(0, i + 1);
+            if(dict.contains(temp)){
+                if(i == s.length() - 1){
+                    res.add(temp);
+                }else{
+                    List<String> subres = backTrack(s.substring(i + 1), dict, memo);
+                    if(!subres.isEmpty()){
+                        for(String str : subres){
+                            res.add(temp + " " + str);                    
+                        }   
+                    }
+                }
+            }
+            memo.put(s, res);
+        }
+             
+        return res;
+    }
+} 
+```
+
