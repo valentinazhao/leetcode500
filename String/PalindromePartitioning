@@ -1,0 +1,53 @@
+[回文串切割](https://leetcode.com/problems/palindrome-partitioning/description/)
+
+```
+Given a string s, partition s such that every substring of the partition is a palindrome.
+
+Return all possible palindrome partitioning of s.
+
+Example:
+
+Input: "aab"
+Output:
+[
+  ["aa","b"],
+  ["a","a","b"]
+]
+```
+
+就是普通backtracking
+```java
+class Solution {
+    public List<List<String>> partition(String s) {
+        List<List<String>> rst = new ArrayList<>();
+        List<String> temp = new ArrayList<>();
+        helper(s, 0, temp, rst);
+        return rst;
+    }
+    private void helper(String s, int idx, List<String> temp, List<List<String>> rst) {
+        if (idx == s.length()) {
+            rst.add(new ArrayList<>(temp));
+            return ;
+        }
+        
+        for (int i = idx; i < s.length(); i++) {
+            String sub = s.substring(idx, i + 1);
+            temp.add(sub);
+            if (isValid(sub)) {
+                helper(s, i + 1, temp, rst);
+            }
+            temp.remove(temp.size() - 1);
+        }
+    }
+    private boolean isValid(String s) {
+        int l = 0, r = s.length() - 1;
+        while (l < r) {
+            if (s.charAt(l++) != s.charAt(r--)) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+}
+```
