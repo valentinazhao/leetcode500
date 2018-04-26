@@ -16,28 +16,27 @@ https://www.programcreek.com/2014/04/leetcode-palindrome-partitioning-ii-java/
 ```java
 class Solution {
     public int minCut(String s) {
-        int n = s.length(); 
-	    boolean dp[][] = new boolean[n][n];
-	    int cut[] = new int[n];
- 
-	    for (int j = 0; j < n; j++) {
-		    cut[j] = j; //set maximum # of cut
-		    for (int i = 0; i <= j; i++) {
-		    	if (s.charAt(i) == s.charAt(j) && (j - i <= 1 || dp[i+1][j-1])) {
-				    dp[i][j] = true;
-		    		// if need to cut, add 1 to the previous cut[i-1]
-			    	if (i > 0){
-			    		cut[j] = Math.min(cut[j], cut[i-1] + 1);
-			    	} else {
-			    	// if [0...j] is palindrome, no need to cut    
-	    				cut[j] = 0; 
-	    			}	
-	    		}
-	    	}
-	    }
- 
-    	return cut[n - 1];
+        int n = s.length();
+        
+        boolean[][] dp = new boolean[n][n];
+        int[] cut =  new int[n];
+        
+        for (int i = 0; i < n; i++) {
+            cut[i] = i;
+            for (int j = 0; j <= i; j++) {
+                if (s.charAt(j) == s.charAt(i) && (i - j <= 1 || dp[j + 1][i - 1])) {
+                    dp[j][i] = true;
+                    if (j == 0) {
+                        cut[i] = 0;
+                    } else {
+                        cut[i] = Math.min(cut[i], cut[j - 1] + 1);
+                    }
+                }
+            }
+        }
+        
+        return cut[n - 1];
     }
 }
-````
+```
 注： 网上包括discussion解法杂乱，多找找不同blog，找自己能理解的非常重要.
