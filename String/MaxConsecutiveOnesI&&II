@@ -32,7 +32,7 @@ class Solution {
 }
 ```
 
-[最大连续1的个数之二]
+[最大连续1的个数之二](https://leetcode.com/problems/max-consecutive-ones-ii/description/)
 ```
 Given a binary array, find the maximum number of consecutive 1s in this array if you can flip at most one 0.
 
@@ -57,8 +57,6 @@ coming from the stream as it's too large to hold in memory. Could you solve it e
 用while循环可以将左指针移动到合适的位置(即恰好跳过这个多余的'0'). 
 
 完成.
-
-
 ```
 
 ```java
