@@ -1,4 +1,4 @@
-[最长公共子数组](https://leetcode.com/problems/maximum-length-of-repeated-subarray/description/)
+[本质LCS-LongestCommonSubstring](https://leetcode.com/problems/maximum-length-of-repeated-subarray/description/)
 
 
 ```
@@ -17,22 +17,20 @@ Note:
 ```
 
 ```
-why binary search tag??
-
-And, remember this useful matrix:
-
-    // recurrence formula
-    // suffixLength = 1+f(i-1, j-1): a[i]==b[j]
-    // suffixLength = 0: a[i]!=n[j]
-    // subarrayLengh = max{suffixLength(i, j)}
-    
-    //   x 1 2 3 2 1
-    // x 0 0 0 0 0 0
-    // 3 0 0 0 1 0 0
-    // 2 0 0 1 0 2 0
-    // 1 0
-    // 4 0
-    // 7 0
+        Longest Common Substring
+        a  b  c  d  a  f
+     0  0  0  0  0  0  0
+   b 0  0  1  0  0  0  0
+   c 0  0  0  2  0  0  0
+   d 0  0  0  0  3  0  0
+   f 0  0  0  0  0  0  1
+   
+   if (input1 == input2) {
+       T[i][j] = T[i-1][j-1] + 1;
+   } else {
+       T[i][j] = 0;
+   }
+   T[i][j] is the length of the common prefix between characters [X1...Xi] and [Y1...Yj].
     
 ```
 
