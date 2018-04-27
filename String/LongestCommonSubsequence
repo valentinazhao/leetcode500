@@ -1,0 +1,17 @@
+
+                  Longest Common Subsequence
+                  a  b  c  d  a  f
+               0  0  0  0  0  0  0
+            a  0  1  1  1  1  1  1
+            c  0  1  1  2  2  2  2
+            b  0  1  2  2  2  2  2
+            c  0  1  2  3  3  3  3
+            d  0  1  2  3  4  4  4
+            
+            if (input1 == input2) {
+                T[i][j] = T[i-1][j-1] + 1;
+            } else {
+                T[i][j] = Math.max(T[i-1][j], T[i][j-1]);
+            }
+            
+            
