@@ -32,7 +32,7 @@ class Solution {
                     dp[i] = Math.max(dp[j] + 1, dp[i]);
                 }
             }
-            result = Math.max(result, dp[i]);
+            result = Math.max(result, dp[i]); // 这里要特别注意！
         }
         
         return result;
