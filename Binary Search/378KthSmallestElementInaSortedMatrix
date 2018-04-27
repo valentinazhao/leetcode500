@@ -2,7 +2,8 @@
 
 
 ```
-Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix.
+Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the 
+matrix.
 
 Note that it is the kth smallest element in the sorted order, not the kth distinct element.
 
@@ -86,4 +87,5 @@ class Solution {
 ```
 
 
-更新：今天count函数逻辑关系
+更新：今天count函数逻辑关系又写错了。不过，我非常确定while(l < r)这种写法非常正确，即最后停下来的l一定是满足等分关系(condition)的那个唯一值。即
+     满足
