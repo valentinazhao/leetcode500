@@ -11,17 +11,17 @@ Example:
 
 matrix = [
    [ 1,  5,  9],
-   [10, 11, 13],
-   [12, 13, 15]
+   [ 8, 10, 11],
+   [11, 13, 15]
 ],
 k = 8,
 
 return 13.
 Note: 
-You may assume k is always valid, 1 ≤ k ≤ n2.
+You may assume k is always valid, 1 ≤ k ≤ n^2.
 ```
 
-
+Time: O(n * log(max - min)) Space: O(1)
 ```
 这题参考bittiger视频，有三种解法
 
@@ -88,4 +88,6 @@ class Solution {
 
 
 更新：今天count函数逻辑关系又写错了。不过，我非常确定while(l < r)这种写法非常正确，即最后停下来的l一定是满足等分关系(condition)的那个唯一值。即
-     满足
+     满足low这个数的count一定大于等于k(count >= k).
+     见上面更新的例子，k=8，似乎很容易返回low=12，which这个数不存在于matrix当中.
+     但实际
